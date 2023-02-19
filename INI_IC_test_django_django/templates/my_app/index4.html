@@ -1,0 +1,78 @@
+
+{% extends 'my_app/header_exam.html' %}
+{% load static %}
+
+{% block content %}
+
+<!DOCTYPE html>
+
+<head>
+    <title>Django python online Exam</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function()
+        {
+           $("#but1").click(function()
+           {
+              $(".rb").show();
+              $(".rb").attr("disabled",true);
+           });
+        });
+        function getanswers()
+        {
+            document.getElementById("UserAnswers").innerHTML="";
+            var e=document.getElementsByTagName('input');
+            for(i=0;i<=e.length;i++)
+            {
+                if(e[i].type=="radio")
+                {
+                    if(e[i].checked)
+                    {
+                    document.getElementById("UserAnswers").innerHTML+="Q"+e[i].name+" The Answer You Are Selected Is :"+e[i].value+"<br/>";
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <center>
+        <h1>"IC EXAM SIMULATION"</h1>
+        <h2>{{result.id}} </h2>
+        <hr/>
+    </center>
+        <div style="padding-left: 500px; font-size: 25px; margin: auto;padding-right: 500px;">
+            {% for result in quizzcfp4 %}
+            <table>
+               <tr>
+                   <td>  {{result.id}} ) {{result.Question}}  ?</td>
+              </tr>
+              <tr>
+                   <td><input type="radio" id="option1" class="rb" name="{{result.id}}" value="{{result.option1}}">{{result.option1}}</td>
+               </tr>
+              <tr>
+                  <td><input type="radio" id="option2" class="rb" name="{{result.id}}" value="{{result.option2}}">{{result.option2}}</td>
+              </tr> 
+              <tr>
+                  <td><input type="radio" id="option3" class="rb"name="{{result.id}}" value="{{result.option3}}">{{result.option3}}</td>
+              </tr>
+              <tr>
+                  <td><input type="radio" id="option4" class="rb"name="{{result.id}}" value="{{result.option4}}">{{result.option4}}</td>
+              </tr>
+              <tr>
+                  <td><label id="corans" class="rb"  style="display: none; color:green"><b>The Correct Answer Is: {{result.corrans}}</b></label></td>
+              </tr>
+              <hr/>
+            </table>
+              
+            {% endfor %}
+            <input type="submit" value="Click For Result" id="but1" onclick="getanswers();"/>
+            <hr>
+            <b id="UserAnswers"></b>
+           <hr/>
+        </div>
+</body>
+</html>
+{% endblock %}
+
+

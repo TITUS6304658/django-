@@ -1,0 +1,7 @@
+<nav>
+    <ul>
+        {% for key in Tests %}
+            <li><a href="{% url 'home' key%}">Test value = {{key}} </a></li>
+        {% endfor %}
+    </ul>
+</nav>

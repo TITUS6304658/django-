@@ -1,0 +1,11 @@
+<header>
+    <a href="{% url 'select' %}">Select</a><br />
+    <a href="{% url 'post_new' %}">Post</a>
+  </header>
+  <br /><br /><br /><br />
+  
+  <ul>
+    {% for quizz in quizzs %}
+    <li>{{ quizz.Test }}}</li>
+    {% endfor %}
+  </ul>
